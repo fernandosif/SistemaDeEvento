@@ -93,27 +93,4 @@ public class AlunoDAO {
         return aluno;
     }
      
-     
-public Aluno recuperar (int codigo) throws SQLException{
-        int id = codigo;
-        Aluno aluno = new Aluno();
-        sql = "select id, nome, email, tipo, ra, curso, turma from participante where id = ?";
-        
-       
-        pst = Conexao.getInstance().prepareStatement(sql);
-        pst.setInt(1, 1);
-        ResultSet rs = pst.executeQuery();
-        
-        aluno.setCodigoAluno(1);
-        aluno.setNomeAluno(rs.getString("nome"));
-        System.out.printf("Testando; " +rs.getString("nome"));
-        aluno.setEmailAluno(rs.getString("email"));
-        aluno.setCategoriaAluno(rs.getString("tipo"));
-        aluno.setRaAluno(rs.getString("ra"));
-        aluno.setCursoAluno(rs.getString("curso"));
-        aluno.setTurmaAluno(rs.getString("turma"));
-        pst.close();
-
-    return aluno;
-    }
 }

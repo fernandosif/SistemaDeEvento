@@ -9,6 +9,7 @@ import Model.Evento;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,4 +72,22 @@ public class EventoDAO {
         pst.execute();
         pst.close();
     }
+    
+    
+    /*public Evento EventoById(int id) throws SQLException {
+        Evento evento = null;
+        sql = "select e.id, e.titulo, e.inicio, e.termino, e.responsavel, e.codCurso, e.statuss, c.nome\n" +
+                "from evento e, curso c where e.codCurso = c.id and e.id = ?";
+        Statement st;
+        pst = Conexao.getInstance().prepareStatement(sql);
+        pst.setInt(1, id);
+        pst.executeQuery();
+        ResultSet rs = pst.getResultSet();
+        while (rs.next()) {
+            evento = new Evento(rs.getInt("id"), rs.getString("titulo"), rs.getString("inicio"), rs.getString("termino"),
+                    rs.getString("responsavel"), rs.getInt("codCurso"), rs.getString("statuss"));
+        }
+        pst.close();
+        return evento;
+    }*/
 }

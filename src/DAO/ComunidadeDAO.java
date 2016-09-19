@@ -10,6 +10,7 @@ import Model.Comunidade;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,24 @@ import java.util.List;
 public class ComunidadeDAO {
     PreparedStatement pst;
     String sql;
+    
+    
+    
+    public Comunidade ComunidadeById(int id) throws SQLException {
+        Comunidade comunidade = null;
+        sql = "Select * from participante where id=?";
+        Statement st;
+        pst = Conexao.getInstance().prepareStatement(sql);
+        pst.setInt(1, id);
+        pst.executeQuery();
+        ResultSet rs = pst.getResultSet();
+        while (rs.next()) {
+            comunidade = new Comunidade(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("instituicao"),
+                    rs.getString("email"), rs.getString("tipo"), rs.getString("telefone"));
+        }
+        pst.close();
+        return comunidade;
+    }
     
     public List<Comunidade> ListaComunidade() throws SQLException{
         List<Comunidade> listaComunidade;

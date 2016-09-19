@@ -9,6 +9,7 @@ import Model.Atividade;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,5 +99,23 @@ public class AtividadeDAO {
         pst.setInt(12, atividade.getEventoAtividade().getCodigoEvento());
         pst.execute();
         pst.close();
+    }
+    
+    
+    public Atividade AtividadeById(int id) throws SQLException {
+        Atividade atividade = null;
+        sql = "select* from atividade where id=?";
+        Statement st;
+        pst = Conexao.getInstance().prepareStatement(sql);
+        pst.setInt(1, id);
+        pst.executeQuery();
+        ResultSet rs = pst.getResultSet();
+        while (rs.next()) {
+            atividade = new Atividade(rs.getInt("id"), rs.getString("titulo"),rs.getInt("vagasTotal"), 
+                    rs.getInt("vagasDisp"), rs.getString("ministrante"), rs.getString("dataa"),
+                    rs.getString("inicio"), rs.getString("termino"), rs.getString("locall"),rs.getString("descricao"));
+        }
+        pst.close();
+        return atividade;
     }
 }

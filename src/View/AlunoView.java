@@ -82,7 +82,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
         setTitle("Cadastro de Alunos");
         setPreferredSize(new java.awt.Dimension(650, 550));
 
-        lbCodigo.setText("Código:");
+        lbCodigo.setText("ID:");
         lbCodigo.setEnabled(false);
 
         lbNome.setText("Nome:");
@@ -121,42 +121,39 @@ public class AlunoView extends javax.swing.JInternalFrame {
         txtEmail.setEnabled(false);
 
         txtRa.setFormatterFactory(setFormatoRa());
+        txtRa.setEnabled(false);
 
         javax.swing.GroupLayout pnl1Layout = new javax.swing.GroupLayout(pnl1);
         pnl1.setLayout(pnl1Layout);
         pnl1Layout.setHorizontalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbCurso, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbEmail, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmail)
+                    .addComponent(txtNome)
                     .addGroup(pnl1Layout.createSequentialGroup()
-                        .addComponent(lbCodigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(lbRa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtRa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(229, Short.MAX_VALUE))
-                    .addGroup(pnl1Layout.createSequentialGroup()
-                        .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbNome)
-                            .addComponent(lbCurso)
-                            .addComponent(lbEmail))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnl1Layout.createSequentialGroup()
-                                .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                                    .addComponent(txtEmail))
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbRa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtRa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnl1Layout.createSequentialGroup()
+                                .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lbTurma)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTurma)
-                                .addGap(20, 20, 20))
-                            .addGroup(pnl1Layout.createSequentialGroup()
-                                .addComponent(txtNome)
-                                .addContainerGap())))))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(68, 68, 68))
         );
         pnl1Layout.setVerticalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,11 +174,11 @@ public class AlunoView extends javax.swing.JInternalFrame {
                     .addComponent(lbCurso)
                     .addComponent(lbTurma)
                     .addComponent(txtTurma))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 24, Short.MAX_VALUE)
                 .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         btnNovo.setText("Novo");
@@ -234,25 +231,25 @@ public class AlunoView extends javax.swing.JInternalFrame {
                     .addGroup(pnl2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                             .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(31, 31, 31))
+                .addContainerGap())
         );
         pnl2Layout.setVerticalGroup(
             pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnNovo)
+                .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSalvar)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAlterar)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnExcluir)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCancelar)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -279,43 +276,41 @@ public class AlunoView extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pnl2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(pnl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+                    .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnl2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   public static DefaultFormatterFactory setFormatoRa()  
-{  
-    MaskFormatter comFoco = null;  
-    try   
-    {   
-        comFoco = new MaskFormatter("##-#####"); 
-        comFoco.setPlaceholderCharacter('_');
-    }   
-    catch (Exception pe) { }  
-    DefaultFormatterFactory factory = new DefaultFormatterFactory(comFoco, comFoco);  
-    return factory;  
-} 
+   public static DefaultFormatterFactory setFormatoRa(){  
+        MaskFormatter comFoco = null;  
+        try   
+        {   
+            comFoco = new MaskFormatter("##-#####"); 
+            comFoco.setPlaceholderCharacter('_');
+        }   
+        catch (Exception pe) { }  
+        DefaultFormatterFactory factory = new DefaultFormatterFactory(comFoco, comFoco);  
+        return factory;  
+    } 
     
      public void atualizarTabelaAluno(){
         aluno = new Aluno();
@@ -327,25 +322,23 @@ public class AlunoView extends javax.swing.JInternalFrame {
         }
        
  
-        String dados[][] = new String[listaAluno.size()][6];
+        String dados[][] = new String[listaAluno.size()][5];
         int i = 0;
         for(Aluno aluno : listaAluno){
             dados[i][0] = String.valueOf(aluno.getCodigoAluno());
             dados[i][1] = aluno.getNomeAluno();
-            //dados[i][2] = aluno.getEmailAluno();
-            dados[i][2] = aluno.getCategoriaAluno();
-            dados[i][3] = aluno.getRaAluno();
-            dados[i][4] = aluno.getCursoAluno();
-            dados[i][5] = aluno.getTurmaAluno();
+            dados[i][2] = aluno.getRaAluno();
+            dados[i][3] = aluno.getCursoAluno();
+            dados[i][4] = aluno.getTurmaAluno();
             i++;
         }
         
-        String tituloColuna[] = {"ID", "Nome",  "Tipo", "R.A", "Curso", "Turma"};
+        String tituloColuna[] = {"ID", "Nome", "R.A", "Curso", "Turma"};
         DefaultTableModel tabelaAluno = new DefaultTableModel();
         tabelaAluno.setDataVector(dados, tituloColuna);
         tbAluno.setModel(new DefaultTableModel(dados, tituloColuna){
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
             
             public boolean isCellEditable(int rowIndex, int columnIndex){
@@ -355,11 +348,9 @@ public class AlunoView extends javax.swing.JInternalFrame {
         
         tbAluno.getColumnModel().getColumn(0).setPreferredWidth(30);
         tbAluno.getColumnModel().getColumn(1).setPreferredWidth(300);
-        tbAluno.getColumnModel().getColumn(2).setPreferredWidth(200);
-        tbAluno.getColumnModel().getColumn(3).setPreferredWidth(50);
-        tbAluno.getColumnModel().getColumn(4).setPreferredWidth(50);
-        tbAluno.getColumnModel().getColumn(5).setPreferredWidth(200);
-        //tbAluno.getColumnModel().getColumn(6).setPreferredWidth(100);
+        tbAluno.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tbAluno.getColumnModel().getColumn(3).setPreferredWidth(200);
+        tbAluno.getColumnModel().getColumn(4).setPreferredWidth(100);
         
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
         centralizado.setHorizontalAlignment(SwingConstants.CENTER);

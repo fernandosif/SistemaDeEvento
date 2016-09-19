@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -75,29 +77,8 @@ public class AtividadeView extends javax.swing.JInternalFrame {
         cbEvento = new javax.swing.JComboBox();
         txtDescricao = new javax.swing.JTextField();
         txtMinistrante = new javax.swing.JTextField();
-        txtData = new javax.swing.JTextField();
-        try{
-            javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##/##/####");
-            txtData = new javax.swing.JFormattedTextField(data);
-        }
-        catch (Exception e){
-        }
         lbHorai = new javax.swing.JLabel();
-        txtHorai = new javax.swing.JTextField();
-        try{
-            javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##h##");
-            txtHorai = new javax.swing.JFormattedTextField(data);
-        }
-        catch (Exception e){
-        }
         lbHoraf = new javax.swing.JLabel();
-        txtHoraf = new javax.swing.JTextField();
-        try{
-            javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##h##");
-            txtHoraf = new javax.swing.JFormattedTextField(data);
-        }
-        catch (Exception e){
-        }
         lbTipo = new javax.swing.JLabel();
         cbCategoria = new javax.swing.JComboBox();
         lbVagasd = new javax.swing.JLabel();
@@ -108,6 +89,9 @@ public class AtividadeView extends javax.swing.JInternalFrame {
         lbResumo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaResumo = new javax.swing.JTextArea();
+        txtData = new javax.swing.JFormattedTextField();
+        txtHorai = new javax.swing.JFormattedTextField();
+        txtHoraf = new javax.swing.JFormattedTextField();
         btnNovo = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
@@ -146,17 +130,11 @@ public class AtividadeView extends javax.swing.JInternalFrame {
 
         txtMinistrante.setEnabled(false);
 
-        txtData.setEnabled(false);
-
         lbHorai.setText("Hora Ini.:");
         lbHorai.setEnabled(false);
 
-        txtHorai.setEnabled(false);
-
         lbHoraf.setText("Hora Fim:");
         lbHoraf.setEnabled(false);
-
-        txtHoraf.setEnabled(false);
 
         lbTipo.setText("Tipo:");
         lbTipo.setEnabled(false);
@@ -182,6 +160,15 @@ public class AtividadeView extends javax.swing.JInternalFrame {
         txtaResumo.setRows(3);
         txtaResumo.setEnabled(false);
         jScrollPane1.setViewportView(txtaResumo);
+
+        txtData.setFormatterFactory(setFormatoData());
+        txtData.setEnabled(false);
+
+        txtHorai.setFormatterFactory(setFormatoHora());
+        txtHorai.setEnabled(false);
+
+        txtHoraf.setFormatterFactory(setFormatoHora());
+        txtHoraf.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -225,17 +212,17 @@ public class AtividadeView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbHorai)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtHorai, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(txtHorai, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lbHoraf)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtHoraf, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtHoraf, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtMinistrante)
                             .addComponent(txtLocal)
-                            .addComponent(jScrollPane1))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -266,10 +253,10 @@ public class AtividadeView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbData)
-                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbHorai)
-                    .addComponent(txtHorai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbHoraf)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHorai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtHoraf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -380,12 +367,38 @@ public class AtividadeView extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public static DefaultFormatterFactory setFormatoData(){  
+        MaskFormatter comFoco = null;  
+        try   
+        {   
+            comFoco = new MaskFormatter("##/##/####"); 
+            comFoco.setPlaceholderCharacter('_');
+        }   
+        catch (Exception pe) { }  
+        DefaultFormatterFactory factory = new DefaultFormatterFactory(comFoco, comFoco);  
+        return factory;  
+    } 
+    
+    public static DefaultFormatterFactory setFormatoHora(){  
+        MaskFormatter comFoco = null;  
+        try   
+        {   
+            comFoco = new MaskFormatter("##h##"); 
+            comFoco.setPlaceholderCharacter('_');
+        }   
+        catch (Exception pe) { }  
+        DefaultFormatterFactory factory = new DefaultFormatterFactory(comFoco, comFoco);  
+        return factory;  
+    } 
+    
+    
     public void atualizarTabelaAtividade(){
         atividade = new Atividade();
         
@@ -710,10 +723,10 @@ public class AtividadeView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbVagasd;
     private javax.swing.JLabel lbVagast;
     private javax.swing.JTable tbAtividade;
-    private javax.swing.JTextField txtData;
+    private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextField txtDescricao;
-    private javax.swing.JTextField txtHoraf;
-    private javax.swing.JTextField txtHorai;
+    private javax.swing.JFormattedTextField txtHoraf;
+    private javax.swing.JFormattedTextField txtHorai;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtLocal;
     private javax.swing.JTextField txtMinistrante;

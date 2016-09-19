@@ -9,6 +9,7 @@ import Model.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,5 +68,21 @@ public class UsuarioDAO {
         pst.setInt(5, usuario.getCodigoUsuario());
         pst.execute();
         pst.close();
+    }
+    
+    public Usuario UsuarioById(int id) throws SQLException {
+        Usuario usuario = null;
+        sql = "Select * from usuario where id=?";
+        Statement st;
+        pst = Conexao.getInstance().prepareStatement(sql);
+        pst.setInt(1, id);
+        pst.executeQuery();
+        ResultSet rs = pst.getResultSet();
+        while (rs.next()) {
+            usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"), rs.getInt("nivel"),
+                    rs.getString("statu"));
+        }
+        pst.close();
+        return usuario;
     }
 }

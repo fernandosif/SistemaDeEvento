@@ -12,24 +12,26 @@ package Model;
 public class Comunidade {
     private int codigoComunidade;
     private String nomeComunidade;
-    private String cpfComunidade;
-    private String instituicaoComunidade;
     private String emailComunidade;
     private String tipoComunidade;
+    private String cpfComunidade;
+    private String instituicaoComunidade;
     private String telefoneComunidade;
 
-    public Comunidade(int codigoComunidade, String nomeComunidade, String cpfComunidade, String instituicaoComunidade, String emailComunidade, String tipoComunidade, String telefoneComunidade) {
+    public Comunidade(int codigoComunidade, String nomeComunidade, String emailComunidade, String tipoComunidade, String cpfComunidade, String instituicaoComunidade, String telefoneComunidade) {
         this.codigoComunidade = codigoComunidade;
         this.nomeComunidade = nomeComunidade;
-        this.cpfComunidade = cpfComunidade;
-        this.instituicaoComunidade = instituicaoComunidade;
         this.emailComunidade = emailComunidade;
         this.tipoComunidade = tipoComunidade;
+        this.cpfComunidade = cpfComunidade;
+        this.instituicaoComunidade = instituicaoComunidade;
         this.telefoneComunidade = telefoneComunidade;
     }
 
     public Comunidade() {
     }
+
+ 
 
     public int getCodigoComunidade() {
         return codigoComunidade;
