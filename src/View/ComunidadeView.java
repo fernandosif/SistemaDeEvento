@@ -75,8 +75,7 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
         tbComunidade = new javax.swing.JTable();
 
         setClosable(true);
-        setResizable(true);
-        setTitle("Cadastro Comunidade");
+        setTitle("Comunidade");
         setPreferredSize(new java.awt.Dimension(650, 550));
 
         lbCodigo.setText("ID:");
@@ -368,10 +367,27 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
     
     
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if(txtCpf.getText().isEmpty()||txtNome.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Preencha os campos");
+        String strCpf="___.___.___-__";
+        String strFone="(__)____-____";
+        
+        if(txtCpf.getText().isEmpty() || strCpf.equals(txtCpf.getText())){
+            JOptionPane.showMessageDialog(null, "Preencha o CPF!");
             txtNome.requestFocusInWindow();
-        } else if(txtCodigo.getText().isEmpty()){
+        } else if(txtNome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o Nome!");
+            txtNome.requestFocusInWindow();
+        } else if(txtTelefone.getText().isEmpty() || strFone.equals(txtTelefone.getText())){
+            JOptionPane.showMessageDialog(null, "Preencha o Telefone!");
+            txtTelefone.requestFocusInWindow();
+        } else if(txtEmail.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o E-Mail!");
+            txtEmail.requestFocusInWindow();
+        } else if(txtInstituicao.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha a Instituição!");
+            txtInstituicao.requestFocusInWindow();
+        }
+        
+        else if(txtCodigo.getText().isEmpty()){
             comunidade = new Comunidade();
             comunidade.setNomeComunidade(txtNome.getText());
             comunidade.setEmailComunidade(txtEmail.getText());
@@ -468,6 +484,8 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbComunidadeMouseClicked
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
         limpaCamposComunidade();
         preparaNovo();
         ativaCampos();

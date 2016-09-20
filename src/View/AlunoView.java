@@ -78,8 +78,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
         tbAluno = new javax.swing.JTable();
 
         setClosable(true);
-        setResizable(true);
-        setTitle("Cadastro de Alunos");
+        setTitle("Alunos");
         setPreferredSize(new java.awt.Dimension(650, 550));
 
         lbCodigo.setText("ID:");
@@ -279,7 +278,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(pnl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -293,8 +292,8 @@ public class AlunoView extends javax.swing.JInternalFrame {
                     .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnl2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -365,10 +364,27 @@ public class AlunoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if(txtRa.getText().isEmpty()||txtNome.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Preencha os campos");
+        
+        String strRa = "__-_____";
+        
+        if(txtRa.getText().isEmpty() || strRa.equals(txtRa.getText())){
+            JOptionPane.showMessageDialog(null, "Preencha o RA!");
+            txtRa.requestFocusInWindow();
+        } else if(txtNome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o Nome!");
             txtNome.requestFocusInWindow();
-        } else if(txtCodigo.getText().isEmpty()){
+        } else if(txtCurso.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o Curso!");
+            txtCurso.requestFocusInWindow();
+        } else if(txtTurma.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha a Turma!");
+            txtTurma.requestFocusInWindow();
+        } else if(txtEmail.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o E-Mail!");
+            txtEmail.requestFocusInWindow();
+        }
+        
+        else if(txtCodigo.getText().isEmpty()){
             aluno = new Aluno();
             aluno.setNomeAluno(txtNome.getText());
             aluno.setEmailAluno(txtEmail.getText());
@@ -416,29 +432,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void tbAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAlunoMouseClicked
-        
-            /* txtCodigo.setText(tbAluno.getValueAt(tbAluno.getSelectedRow(),0).toString());
-            txtNome.setText(tbAluno.getValueAt(tbAluno.getSelectedRow(),1).toString());
-            //txtEmail.setText(tbAluno.getValueAt(tbAluno.getSelectedRow(),2).toString());
-            txtRa.setText(tbAluno.getValueAt(tbAluno.getSelectedRow(),3).toString());
-            txtCurso.setText(tbAluno.getValueAt(tbAluno.getSelectedRow(),4).toString());
-            txtTurma.setText(tbAluno.getValueAt(tbAluno.getSelectedRow(),5).toString());*/
-            
-            /*Aluno recuperado = new Aluno();
-            int num = Integer.parseInt(tbAluno.getValueAt(tbAluno.getSelectedRow(),0).toString());
-            try {
-            recuperado = alunoDAO.recuperar(num);
-            } catch (SQLException ex) {
-            Logger.getLogger(AlunoView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            txtCodigo.setText(Integer.toString(recuperado.getCodigoAluno()));
-            txtNome.setText(recuperado.getNomeAluno());
-            txtRa.setText(recuperado.getRaAluno());
-            txtCurso.setText(recuperado.getCursoAluno());
-            txtTurma.setText(recuperado.getTurmaAluno());
-            txtEmail.setText(recuperado.getEmailAluno());*/
-        
+
         txtCodigo.setText(tbAluno.getValueAt(tbAluno.getSelectedRow(),0).toString());
         try {   
             aluno = alunoDAO.AlunoById(Integer.parseInt(txtCodigo.getText()));
@@ -485,6 +479,8 @@ public class AlunoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
         limpaCamposAluno();
         preparaNovo();
         ativaCampos();

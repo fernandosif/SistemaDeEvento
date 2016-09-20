@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Model.Curso;
 import Model.Evento;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +21,7 @@ import java.util.List;
 public class EventoDAO {
     PreparedStatement pst;
     String sql;
+    CursoDAO cursoDAO;
     
     public List<Evento> ListaEvento() throws SQLException{
         List<Evento> listaEvento;
@@ -30,11 +32,13 @@ public class EventoDAO {
         while(rs.next()){
             
             listaEvento.add(new Evento(rs.getInt("id"), rs.getString("titulo"), rs.getString("inicio"),
-                    rs.getString("termino"), rs.getString("responsavel"), rs.getString("statuss")));
+                    rs.getString("termino"), rs.getString("responsavel"),rs.getInt("codCurso"), rs.getString("statuss")));
         }
         pst.close();
         return listaEvento;
     }
+    
+    
     
     public void salvar(Evento evento) throws SQLException{
         sql = "insert into evento values(?,?,?,?,?,?,?)";
@@ -73,11 +77,9 @@ public class EventoDAO {
         pst.close();
     }
     
-    
-    /*public Evento EventoById(int id) throws SQLException {
+    public Evento EventoById(int id) throws SQLException {
         Evento evento = null;
-        sql = "select e.id, e.titulo, e.inicio, e.termino, e.responsavel, e.codCurso, e.statuss, c.nome\n" +
-                "from evento e, curso c where e.codCurso = c.id and e.id = ?";
+        sql = "select* from evento where id = ?";
         Statement st;
         pst = Conexao.getInstance().prepareStatement(sql);
         pst.setInt(1, id);
@@ -89,5 +91,5 @@ public class EventoDAO {
         }
         pst.close();
         return evento;
-    }*/
+    }
 }

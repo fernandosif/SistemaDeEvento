@@ -31,6 +31,7 @@ public class EventoView extends javax.swing.JInternalFrame {
     Evento evento;
     EventoDAO eventoDAO;
     List<Evento> listaEvento;
+    Curso curso;
     CursoDAO cursoDAO;
     List<Curso> listaCurso;
     
@@ -353,7 +354,7 @@ public class EventoView extends javax.swing.JInternalFrame {
         }
        
         
-        String dados[][] = new String[listaEvento.size()][7];
+        String dados[][] = new String[listaEvento.size()][6];
         int i = 0;
         for(Evento evento : listaEvento){
             dados[i][0] = String.valueOf(evento.getCodigoEvento());
@@ -361,18 +362,17 @@ public class EventoView extends javax.swing.JInternalFrame {
             dados[i][2] = evento.getInicioEvento();
             dados[i][3] = evento.getTerminoEvento();
             dados[i][4] = evento.getResponsavelEvento();
-            //dados[i][5] = evento.getCursoEvento();
             dados[i][5] = evento.getStatusEvento();
             
             i++;
         }
         
-        String tituloColuna[] = {"ID", "Titulo", "Inicio", "Termino", "Responsável", "Area", "Status"};
+        String tituloColuna[] = {"ID", "Titulo", "Inicio", "Termino", "Responsável", "Status"};
         DefaultTableModel tabelaEvento = new DefaultTableModel();
         tabelaEvento.setDataVector(dados, tituloColuna);
         tbEvento.setModel(new DefaultTableModel(dados, tituloColuna){
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
             
             public boolean isCellEditable(int rowIndex, int columnIndex){
@@ -386,7 +386,7 @@ public class EventoView extends javax.swing.JInternalFrame {
         tbEvento.getColumnModel().getColumn(3).setPreferredWidth(100);
         tbEvento.getColumnModel().getColumn(4).setPreferredWidth(200);
         tbEvento.getColumnModel().getColumn(5).setPreferredWidth(200);
-        tbEvento.getColumnModel().getColumn(5).setPreferredWidth(150);
+
         
         
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
@@ -443,13 +443,29 @@ public class EventoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void tbEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEventoMouseClicked
+        Curso curso1 = new Curso();
+        
         txtCodigo.setText(tbEvento.getValueAt(tbEvento.getSelectedRow(),0).toString());
-        txtEvento.setText(tbEvento.getValueAt(tbEvento.getSelectedRow(),1).toString());
-        txtInicio.setText(tbEvento.getValueAt(tbEvento.getSelectedRow(),2).toString());
-        txtTermino.setText(tbEvento.getValueAt(tbEvento.getSelectedRow(),3).toString());
-        txtResponsavel.setText(tbEvento.getValueAt(tbEvento.getSelectedRow(),4).toString());
-        cbCurso.setSelectedItem(tbEvento.getValueAt(tbEvento.getSelectedRow(),5).toString());
-        cbStatus.setSelectedItem(tbEvento.getValueAt(tbEvento.getSelectedRow(),6).toString());
+        
+         try {
+            evento = eventoDAO.EventoById(Integer.parseInt(txtCodigo.getText()));
+        } catch (SQLException ex) {
+            Logger.getLogger(EventoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            curso1 = cursoDAO.recuperarArea(evento.getCodCurso());
+        } catch (SQLException ex) {
+            Logger.getLogger(EventoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        txtEvento.setText(evento.getTituloEvento());
+        txtInicio.setText(evento.getInicioEvento());
+        txtTermino.setText(evento.getTerminoEvento());
+        txtResponsavel.setText(evento.getResponsavelEvento());
+        cbCurso.setSelectedItem(curso1.getNomeCurso());
+        cbStatus.setSelectedItem(evento.getStatusEvento());
+
         preparaSelecaoTabela();
     }//GEN-LAST:event_tbEventoMouseClicked
 

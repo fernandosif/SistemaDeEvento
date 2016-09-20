@@ -15,29 +15,41 @@ public class Evento {
     private String inicioEvento;
     private String terminoEvento;
     private String responsavelEvento;
-    private Curso cursoEvento;
+    private int codCurso;
     private String statusEvento;
+    private Curso cursoEvento;
+
+    public Evento(int codigoEvento, String tituloEvento, String inicioEvento, String terminoEvento, String responsavelEvento, int codCurso, String statusEvento, Curso cursoEvento) {
+        this.codigoEvento = codigoEvento;
+        this.tituloEvento = tituloEvento;
+        this.inicioEvento = inicioEvento;
+        this.terminoEvento = terminoEvento;
+        this.responsavelEvento = responsavelEvento;
+        this.codCurso = codCurso;
+        this.statusEvento = statusEvento;
+        this.cursoEvento = cursoEvento;
+    }
 
     public Evento() {
     }
 
-    public Evento(int codigoEvento, String tituloEvento, String inicioEvento, String terminoEvento, String responsavelEvento, Curso cursoEvento, String statusEvento) {
+  
+    public Evento(int codigoEvento, String tituloEvento, String inicioEvento, String terminoEvento, String responsavelEvento, int codCurso, String statusEvento) {
         this.codigoEvento = codigoEvento;
         this.tituloEvento = tituloEvento;
         this.inicioEvento = inicioEvento;
         this.terminoEvento = terminoEvento;
         this.responsavelEvento = responsavelEvento;
-        this.cursoEvento = cursoEvento;
+        this.codCurso = codCurso;
         this.statusEvento = statusEvento;
     }
 
-    public Evento(int codigoEvento, String tituloEvento, String inicioEvento, String terminoEvento, String responsavelEvento, String statusEvento) {
-        this.codigoEvento = codigoEvento;
-        this.tituloEvento = tituloEvento;
-        this.inicioEvento = inicioEvento;
-        this.terminoEvento = terminoEvento;
-        this.responsavelEvento = responsavelEvento;
-        this.statusEvento = statusEvento;
+    public int getCodCurso() {
+        return codCurso;
+    }
+
+    public void setCodCurso(int codCurso) {
+        this.codCurso = codCurso;
     }
 
    

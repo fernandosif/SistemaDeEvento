@@ -33,8 +33,8 @@ public class ComunidadeDAO {
         pst.executeQuery();
         ResultSet rs = pst.getResultSet();
         while (rs.next()) {
-            comunidade = new Comunidade(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("instituicao"),
-                    rs.getString("email"), rs.getString("tipo"), rs.getString("telefone"));
+            comunidade = new Comunidade(rs.getInt("id"), rs.getString("nome"), rs.getString("email"), rs.getString("tipo"),
+                    rs.getString("cpf"), rs.getString("instituicao"), rs.getString("telefone"));
         }
         pst.close();
         return comunidade;
