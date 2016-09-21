@@ -364,12 +364,23 @@ public class AlunoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+        aluno = new Aluno();
         String strRa = "__-_____";
         
-        if(txtRa.getText().isEmpty() || strRa.equals(txtRa.getText())){
+        try {
+                aluno = alunoDAO.recuperar(txtRa.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(AlunoView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        if(aluno!=null){
+            JOptionPane.showMessageDialog(null, "RA já Cadastrado!");
+            txtRa.setText("");
+            txtRa.requestFocusInWindow();
+        } else if(txtRa.getText().isEmpty() || strRa.equals(txtRa.getText())){
             JOptionPane.showMessageDialog(null, "Preencha o RA!");
             txtRa.requestFocusInWindow();
+            
         } else if(txtNome.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Preencha o Nome!");
             txtNome.requestFocusInWindow();
@@ -382,9 +393,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
         } else if(txtEmail.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Preencha o E-Mail!");
             txtEmail.requestFocusInWindow();
-        }
-        
-        else if(txtCodigo.getText().isEmpty()){
+        } else if(txtCodigo.getText().isEmpty()){
             aluno = new Aluno();
             aluno.setNomeAluno(txtNome.getText());
             aluno.setEmailAluno(txtEmail.getText());
@@ -403,6 +412,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
             preparaSalvareCancelar();
             desativaCampos();
             limpaCamposAluno();
+            
             
         } else{
             aluno = new Aluno();

@@ -94,4 +94,21 @@ public class ComunidadeDAO {
         pst.execute();
         pst.close();
     }
+    
+    public Comunidade recuperar(String strCpf) throws SQLException{
+        Comunidade comunidade = null;
+        sql = "select id, nome, email, tipo, cpf, instituicao, telefone from participante where cpf = ? ";
+        Statement st;
+        pst = Conexao.getInstance().prepareStatement(sql);
+        pst.setString(1, strCpf);
+        pst.executeQuery();
+        ResultSet rs = pst.getResultSet();
+         while(rs.next()){
+            
+            comunidade = new Comunidade(rs.getInt("id"), rs.getString("nome"),rs.getString("email"), 
+                    rs.getString("tipo"), rs.getString("cpf"), rs.getString("instituicao"),rs.getString("telefone"));
+        }
+        pst.close();
+        return comunidade;
+    }
 }

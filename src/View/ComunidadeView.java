@@ -367,10 +367,21 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
     
     
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        comunidade = new Comunidade();
         String strCpf="___.___.___-__";
         String strFone="(__)____-____";
         
-        if(txtCpf.getText().isEmpty() || strCpf.equals(txtCpf.getText())){
+        try {
+            comunidade = comunidadeDAO.recuperar(txtCpf.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(ComunidadeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(comunidade!=null){
+            JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
+            txtCpf.setText("");
+            txtCpf.requestFocusInWindow();
+        }else if(txtCpf.getText().isEmpty() || strCpf.equals(txtCpf.getText())){
             JOptionPane.showMessageDialog(null, "Preencha o CPF!");
             txtNome.requestFocusInWindow();
         } else if(txtNome.getText().isEmpty()){

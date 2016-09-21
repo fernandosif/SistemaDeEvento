@@ -31,12 +31,15 @@ public class AtividadeDAO {
             
             listaAtividade.add(new Atividade(rs.getInt("id"), rs.getString("titulo"), rs.getInt("vagasTotal"),
                     rs.getInt("vagasDisp"), rs.getString("ministrante"), rs.getString("dataa"), rs.getString("inicio"),
-                    rs.getString("termino"), rs.getString("locall"), rs.getString("descricao")));
+                    rs.getString("termino"), rs.getString("locall"), rs.getString("descricao"),
+                    rs.getInt("codEvento"), rs.getInt("codCategoria")));
         }
         pst.close();
         return listaAtividade;
     }
     
+    
+    //Ver onde está sendo usado...
     public Atividade selectId(int codigoAtividadeId) throws SQLException{
         Atividade atividadeId = new Atividade();
         
@@ -49,7 +52,8 @@ public class AtividadeDAO {
             
             atividadeId = new Atividade(rs.getInt("id"), rs.getString("titulo"), rs.getInt("vagasTotal"),
                     rs.getInt("vagasDisp"), rs.getString("ministrante"), rs.getString("dataa"), rs.getString("inicio"),
-                    rs.getString("termino"), rs.getString("locall"), rs.getString("descricao"));
+                    rs.getString("termino"), rs.getString("locall"), rs.getString("descricao"),
+                    rs.getInt("codEvento"), rs.getInt("codCategoria"));
         }
         pst.close();
         return atividadeId;
@@ -113,7 +117,8 @@ public class AtividadeDAO {
         while (rs.next()) {
             atividade = new Atividade(rs.getInt("id"), rs.getString("titulo"),rs.getInt("vagasTotal"), 
                     rs.getInt("vagasDisp"), rs.getString("ministrante"), rs.getString("dataa"),
-                    rs.getString("inicio"), rs.getString("termino"), rs.getString("locall"),rs.getString("descricao"));
+                    rs.getString("inicio"), rs.getString("termino"), rs.getString("locall"),rs.getString("descricao"),
+                    rs.getInt("codEvento"), rs.getInt("codCategoria"));
         }
         pst.close();
         return atividade;

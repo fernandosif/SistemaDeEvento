@@ -92,4 +92,19 @@ public class EventoDAO {
         pst.close();
         return evento;
     }
+    
+    public Evento recuperarEvento(int id) throws SQLException{
+       Evento evento= null;
+       sql = "select * from evento where id= ?";
+       pst = Conexao.getInstance().prepareStatement(sql);
+       pst.setInt(1, id);
+       ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            
+            evento = new Evento(rs.getInt("id"), rs.getString("titulo"), rs.getString("inicio"), rs.getString("termino"),
+                    rs.getString("responsavel"), rs.getInt("codCurso"), rs.getString("statuss"));
+        }
+        pst.close();
+        return evento;
+    }
 }

@@ -46,6 +46,7 @@ public class EventoView extends javax.swing.JInternalFrame {
         txtResponsavel.setDocument(new LimiteDigitos(60));
         atualizarTabelaEvento();
         preencherComboCurso();
+        limpaCamposEvento();
     }
 
     /**
@@ -397,10 +398,22 @@ public class EventoView extends javax.swing.JInternalFrame {
     }
     
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-         if(txtEvento.getText().isEmpty()||txtInicio.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Preencha os campos");
+        String strData = "__/__/____"; 
+        
+        
+        if(txtEvento.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o titúlo do evento!");
             txtEvento.requestFocusInWindow();
-        } else if(txtCodigo.getText().isEmpty()){
+        } else if(txtInicio.getText().isEmpty() || txtInicio.getText().equals(strData)){
+            JOptionPane.showMessageDialog(null, "Preencha a data de início do evento!!");
+            txtInicio.requestFocusInWindow();
+        } else if(txtTermino.getText().isEmpty() || txtTermino.getText().equals(strData)){
+            JOptionPane.showMessageDialog(null, "Preencha a data de termino do evento!!");
+            txtTermino.requestFocusInWindow();
+        } else if(txtResponsavel.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o responsável do evento!!");
+            txtResponsavel.requestFocusInWindow();
+        }  else if(txtCodigo.getText().isEmpty()){
             evento = new Evento();
             evento.setTituloEvento(txtEvento.getText());
             evento.setInicioEvento(txtInicio.getText());
@@ -444,6 +457,7 @@ public class EventoView extends javax.swing.JInternalFrame {
 
     private void tbEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEventoMouseClicked
         Curso curso1 = new Curso();
+       
         
         txtCodigo.setText(tbEvento.getValueAt(tbEvento.getSelectedRow(),0).toString());
         
@@ -463,7 +477,7 @@ public class EventoView extends javax.swing.JInternalFrame {
         txtInicio.setText(evento.getInicioEvento());
         txtTermino.setText(evento.getTerminoEvento());
         txtResponsavel.setText(evento.getResponsavelEvento());
-        cbCurso.setSelectedItem(curso1.getNomeCurso());
+        cbCurso.setSelectedItem(curso.getNomeCurso());
         cbStatus.setSelectedItem(evento.getStatusEvento());
 
         preparaSelecaoTabela();
@@ -523,8 +537,8 @@ public class EventoView extends javax.swing.JInternalFrame {
         txtInicio.setText("");
         txtTermino.setText("");
         txtResponsavel.setText("");
-        cbCurso.setSelectedItem("Todos");
-        cbStatus.setSelectedItem("");
+        cbCurso.setSelectedItem("Geral");
+        cbStatus.setSelectedItem("Ativo");
     }
     
     public void ativaCampos(){

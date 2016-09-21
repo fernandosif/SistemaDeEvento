@@ -34,20 +34,6 @@ public class CursoDAO {
         return listaCurso;
     }
     
-    public Curso recuperarArea(int id) throws SQLException{
-        Curso curso= null;
-       sql = "select * from curso where id= ?";
-       pst = Conexao.getInstance().prepareStatement(sql);
-       pst.setInt(1, id);
-       ResultSet rs = pst.executeQuery();
-        while(rs.next()){
-            
-            curso = new Curso(rs.getInt("id"), rs.getString("nome"));
-        }
-        pst.close();
-        return curso;
-    }
-    
    public void salvar(Curso curso) throws SQLException{
        sql = "insert into curso values(?,?)";
        pst = Conexao.getInstance().prepareStatement(sql);
@@ -72,5 +58,19 @@ public class CursoDAO {
         pst.setInt(2, curso.getCodigoCurso());
         pst.execute();
         pst.close();
+    }
+   
+     public Curso recuperarArea(int id) throws SQLException{
+        Curso curso= null;
+       sql = "select * from curso where id= ?";
+       pst = Conexao.getInstance().prepareStatement(sql);
+       pst.setInt(1, id);
+       ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            
+            curso = new Curso(rs.getInt("id"), rs.getString("nome"));
+        }
+        pst.close();
+        return curso;
     }
 }

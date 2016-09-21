@@ -20,10 +20,12 @@ public class Atividade {
     private String horafAtividade;
     private String localAtividade;
     private String resumoAtividade;
+    private int codCategoria;
+    private int codEvento;
     private Categoria categoriaAtividade;
     private Evento eventoAtividade;
 
-    public Atividade(int codigoAtividade, String descricaoAtividade, int vagastAtividade, int vagasdAtividade, String ministranteAtividade, String dataAtividade, String horaiAtividade, String horafAtividade, String localAtividade, String resumoAtividade, Categoria categoriaAtividade) {
+    public Atividade(int codigoAtividade, String descricaoAtividade, int vagastAtividade, int vagasdAtividade, String ministranteAtividade, String dataAtividade, String horaiAtividade, String horafAtividade, String localAtividade, String resumoAtividade,int codCategoria, int codEvento,Categoria categoriaAtividade, Evento eventoAtividade) {
         this.codigoAtividade = codigoAtividade;
         this.descricaoAtividade = descricaoAtividade;
         this.vagastAtividade = vagastAtividade;
@@ -34,14 +36,17 @@ public class Atividade {
         this.horafAtividade = horafAtividade;
         this.localAtividade = localAtividade;
         this.resumoAtividade = resumoAtividade;
+        this.codCategoria = codCategoria;
+        this.codEvento = codEvento;
         this.categoriaAtividade = categoriaAtividade;
+        this.eventoAtividade = eventoAtividade;
     }
 
      
     public Atividade() {
     }
 
-    public Atividade(int codigoAtividade, String descricaoAtividade, int vagastAtividade, int vagasdAtividade, String ministranteAtividade, String dataAtividade, String horaiAtividade, String horafAtividade, String localAtividade, String resumoAtividade) {
+    public Atividade(int codigoAtividade, String descricaoAtividade, int vagastAtividade, int vagasdAtividade, String ministranteAtividade, String dataAtividade, String horaiAtividade, String horafAtividade, String localAtividade, String resumoAtividade, int codCategoria, int codEvento) {
         this.codigoAtividade = codigoAtividade;
         this.descricaoAtividade = descricaoAtividade;
         this.vagastAtividade = vagastAtividade;
@@ -52,6 +57,24 @@ public class Atividade {
         this.horafAtividade = horafAtividade;
         this.localAtividade = localAtividade;
         this.resumoAtividade = resumoAtividade;
+        this.codCategoria = codCategoria;
+        this.codEvento = codEvento;
+    }
+
+    public int getCodCategoria() {
+        return codCategoria;
+    }
+
+    public void setCodCategoria(int codCategoria) {
+        this.codCategoria = codCategoria;
+    }
+
+    public int getCodEvento() {
+        return codEvento;
+    }
+
+    public void setCodEvento(int codEvento) {
+        this.codEvento = codEvento;
     }
 
     public int getCodigoAtividade() {

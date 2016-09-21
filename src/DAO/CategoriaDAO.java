@@ -59,4 +59,18 @@ public class CategoriaDAO {
         pst.execute();
         pst.close();
     }
+   
+   public Categoria recuperarCategoria(int id) throws SQLException{
+       Categoria categoria= null;
+       sql = "select * from categoria where id= ?";
+       pst = Conexao.getInstance().prepareStatement(sql);
+       pst.setInt(1, id);
+       ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            
+            categoria = new Categoria(rs.getInt("id"), rs.getString("nome"));
+        }
+        pst.close();
+        return categoria;
+    }
 }

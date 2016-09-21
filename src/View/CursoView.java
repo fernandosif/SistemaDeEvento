@@ -58,7 +58,7 @@ public class CursoView extends javax.swing.JInternalFrame {
         tbCurso = new javax.swing.JTable();
 
         setClosable(true);
-        setTitle("Cadastro de Cursos");
+        setTitle("Cursos");
 
         lbId.setText("ID:");
         lbId.setEnabled(false);

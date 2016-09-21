@@ -82,9 +82,9 @@ public class AtividadeView extends javax.swing.JInternalFrame {
         lbTipo = new javax.swing.JLabel();
         cbCategoria = new javax.swing.JComboBox();
         lbVagasd = new javax.swing.JLabel();
-        txtVagasd = new javax.swing.JTextField();
-        lbVagast = new javax.swing.JLabel();
         txtVagast = new javax.swing.JTextField();
+        lbVagast = new javax.swing.JLabel();
+        txtVagasd = new javax.swing.JTextField();
         txtLocal = new javax.swing.JTextField();
         lbResumo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -101,8 +101,7 @@ public class AtividadeView extends javax.swing.JInternalFrame {
         tbAtividade = new javax.swing.JTable();
 
         setClosable(true);
-        setResizable(true);
-        setTitle("Cadastro de Atividades");
+        setTitle("Atividades");
 
         lbId.setText("ID:");
         lbId.setEnabled(false);
@@ -141,15 +140,15 @@ public class AtividadeView extends javax.swing.JInternalFrame {
 
         cbCategoria.setEnabled(false);
 
-        lbVagasd.setText("Vagas D.:");
+        lbVagasd.setText("Vagas T.:");
         lbVagasd.setEnabled(false);
 
-        txtVagasd.setEnabled(false);
+        txtVagast.setEnabled(false);
 
-        lbVagast.setText("Vagas T.:");
+        lbVagast.setText("Vagas D.:");
         lbVagast.setEnabled(false);
 
-        txtVagast.setEnabled(false);
+        txtVagasd.setEnabled(false);
 
         txtLocal.setEnabled(false);
 
@@ -196,11 +195,11 @@ public class AtividadeView extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(lbVagasd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtVagasd, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtVagast, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lbVagast)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtVagast, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))))
+                                .addComponent(txtVagasd, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,9 +242,9 @@ public class AtividadeView extends javax.swing.JInternalFrame {
                     .addComponent(lbTipo)
                     .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbVagasd)
-                    .addComponent(txtVagasd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtVagast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbVagast)
-                    .addComponent(txtVagast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVagasd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbMinistrante)
@@ -334,20 +333,18 @@ public class AtividadeView extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(38, 38, 38))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,7 +364,7 @@ public class AtividadeView extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         pack();
@@ -487,15 +484,50 @@ public class AtividadeView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        String strData = "__/__/____";
+        String strHora = "__h__";
         
         if(txtDescricao.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Preencha os campos");
+            JOptionPane.showMessageDialog(null, "Preencha a Descrição!");
             txtDescricao.requestFocusInWindow();
-        } else if(txtId.getText().isEmpty()){
+        } else if(txtVagast.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha a Quantidade de Vagas Total!");
+            txtVagast.requestFocusInWindow();
+        } else if(Integer.parseInt(txtVagast.getText()) <=0){
+            JOptionPane.showMessageDialog(null, "Quantidade de Vagas Total é Inválida!");
+            txtVagast.requestFocusInWindow();
+        } else if(txtVagasd.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha a Quantidade de Vagas Disponível!");
+            txtVagasd.requestFocusInWindow();
+        } else if(Integer.parseInt(txtVagasd.getText())<0 || Integer.parseInt(txtVagasd.getText()) > Integer.parseInt(txtVagast.getText())){
+            JOptionPane.showMessageDialog(null, "Quantidade de Vagas Disponível é Inválida ou Maior que a Quantidade de Vagas Total!");
+            txtVagasd.requestFocusInWindow();
+        } else if(txtMinistrante.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o Ministrante!");
+            txtMinistrante.requestFocusInWindow();
+        } else if(txtData.getText().isEmpty() || txtData.getText().equals(strData)){
+            JOptionPane.showMessageDialog(null, "Preencha a Data!");
+            txtData.requestFocusInWindow();
+        } else if(txtHorai.getText().isEmpty() || txtHorai.getText().equals(strHora)){
+            JOptionPane.showMessageDialog(null, "Preencha a Hora Inicial!");
+            txtHorai.requestFocusInWindow();
+        } else if(txtHoraf.getText().isEmpty() || txtHoraf.getText().equals(strHora)){
+            JOptionPane.showMessageDialog(null, "Preencha a Hora de Termino!");
+            txtHoraf.requestFocusInWindow();
+        } else if(txtLocal.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o Local!");
+            txtLocal.requestFocusInWindow();
+        } else if(txtaResumo.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o Resumo!");
+            txtaResumo.requestFocusInWindow();
+        }
+        
+        
+        else if(txtId.getText().isEmpty()){
             atividade = new Atividade();
             atividade.setDescricaoAtividade(txtDescricao.getText());
-            atividade.setVagastAtividade(Integer.parseInt(txtVagast.getText()));
-            atividade.setVagasdAtividade(Integer.parseInt(txtVagasd.getText()));
+            atividade.setVagastAtividade(Integer.parseInt(txtVagasd.getText()));
+            atividade.setVagasdAtividade(Integer.parseInt(txtVagast.getText()));
             atividade.setMinistranteAtividade(txtMinistrante.getText());
             atividade.setDataAtividade(txtData.getText());
             atividade.setHoraiAtividade(txtHorai.getText());
@@ -520,8 +552,8 @@ public class AtividadeView extends javax.swing.JInternalFrame {
         } else{
             atividade = new Atividade();
             atividade.setDescricaoAtividade(txtDescricao.getText());
-            atividade.setVagastAtividade(Integer.parseInt(txtVagast.getText()));
-            atividade.setVagasdAtividade(Integer.parseInt(txtVagasd.getText()));
+            atividade.setVagastAtividade(Integer.parseInt(txtVagasd.getText()));
+            atividade.setVagasdAtividade(Integer.parseInt(txtVagast.getText()));
             atividade.setMinistranteAtividade(txtMinistrante.getText());
             atividade.setDataAtividade(txtData.getText());
             atividade.setHoraiAtividade(txtHorai.getText());
@@ -583,13 +615,40 @@ public class AtividadeView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void tbAtividadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAtividadeMouseClicked
+        Evento evento = new Evento();
+        Categoria categoria = new Categoria();
+        
         txtId.setText(tbAtividade.getValueAt(tbAtividade.getSelectedRow(),0).toString());
-        txtDescricao.setText(tbAtividade.getValueAt(tbAtividade.getSelectedRow(),1).toString());
-        txtVagast.setText(tbAtividade.getValueAt(tbAtividade.getSelectedRow(),2).toString());
-        txtVagasd.setText(tbAtividade.getValueAt(tbAtividade.getSelectedRow(),3).toString());
-        txtData.setText(tbAtividade.getValueAt(tbAtividade.getSelectedRow(),4).toString());
-        txtHorai.setText(tbAtividade.getValueAt(tbAtividade.getSelectedRow(),5).toString());
-        txtHoraf.setText(tbAtividade.getValueAt(tbAtividade.getSelectedRow(),6).toString());
+        
+        try {
+            atividade = atividadeDAO.AtividadeById(Integer.parseInt(txtId.getText()));
+        } catch (SQLException ex) {
+            Logger.getLogger(AtividadeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            evento = eventoDAO.recuperarEvento(atividade.getCodEvento());
+        } catch (SQLException ex) {
+            Logger.getLogger(AtividadeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            categoria = categoriaDAO.recuperarCategoria(atividade.getCodCategoria());
+        } catch (SQLException ex) {
+            Logger.getLogger(AtividadeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        txtDescricao.setText(atividade.getDescricaoAtividade());
+        txtVagast.setText(Integer.toString(atividade.getVagasdAtividade()));
+        txtVagasd.setText(Integer.toString(atividade.getVagastAtividade()));
+        txtMinistrante.setText(atividade.getMinistranteAtividade());
+        txtData.setText(atividade.getDataAtividade());
+        txtHorai.setText(atividade.getHoraiAtividade());
+        txtHoraf.setText(atividade.getHorafAtividade());
+        txtLocal.setText(atividade.getLocalAtividade());
+        txtaResumo.setText(atividade.getResumoAtividade());
+        cbEvento.setSelectedItem(evento.getTituloEvento());
+        cbCategoria.setSelectedItem(categoria.getNomeCategoria());
         preparaSelecaoTabela();
         
     }//GEN-LAST:event_tbAtividadeMouseClicked
@@ -597,8 +656,8 @@ public class AtividadeView extends javax.swing.JInternalFrame {
     public void limpaCamposAtividade(){
         txtId.setText("");
         txtDescricao.setText("");
-        txtVagasd.setText("");
         txtVagast.setText("");
+        txtVagasd.setText("");
         txtMinistrante.setText("");
         txtData.setText("");
         txtHorai.setText("");
@@ -616,9 +675,9 @@ public class AtividadeView extends javax.swing.JInternalFrame {
         lbDescricao.setEnabled(true);
         txtDescricao.setEnabled(true);
         lbVagasd.setEnabled(true);
-        txtVagasd.setEnabled(true);
-        lbVagast.setEnabled(true);
         txtVagast.setEnabled(true);
+        lbVagast.setEnabled(true);
+        txtVagasd.setEnabled(true);
         lbTipo.setEnabled(true);
         cbCategoria.setEnabled(true);
         lbMinistrante.setEnabled(true);
@@ -642,9 +701,9 @@ public class AtividadeView extends javax.swing.JInternalFrame {
         lbDescricao.setEnabled(false);
         txtDescricao.setEnabled(false);
         lbVagasd.setEnabled(false);
-        txtVagasd.setEnabled(false);
-        lbVagast.setEnabled(false);
         txtVagast.setEnabled(false);
+        lbVagast.setEnabled(false);
+        txtVagasd.setEnabled(false);
         lbTipo.setEnabled(false);
         cbCategoria.setEnabled(false);
         lbMinistrante.setEnabled(false);

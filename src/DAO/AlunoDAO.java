@@ -93,4 +93,19 @@ public class AlunoDAO {
         return aluno;
     }
      
+    public Aluno recuperar(String strRa) throws SQLException{
+        Aluno aluno = null;
+        sql = "Select id, nome, email, tipo, ra, curso, turma from participante where ra=?";
+        Statement st;
+        pst = Conexao.getInstance().prepareStatement(sql);
+        pst.setString(1, strRa);
+        pst.executeQuery();
+        ResultSet rs = pst.getResultSet();
+        while (rs.next()) {
+            aluno = new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("email"), rs.getString("tipo"),
+                     rs.getString("ra"), rs.getString("curso"), rs.getString("turma"));
+        }
+        pst.close();
+        return aluno;
+    }
 }
