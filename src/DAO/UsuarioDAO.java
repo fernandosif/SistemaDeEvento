@@ -85,4 +85,21 @@ public class UsuarioDAO {
         pst.close();
         return usuario;
     }
+    
+    public Usuario getLogin(String login, String senha) throws SQLException{
+        Usuario usuario = null;
+        sql = "select *from usuario where login= ? and senha=?";
+        Statement st;
+        pst = Conexao.getInstance().prepareStatement(sql);
+        pst.setString(1, login);
+        pst.setString(2, senha);
+        pst.executeQuery();
+        ResultSet rs = pst.getResultSet();
+        while (rs.next()) {
+            usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"), rs.getInt("nivel"),
+                    rs.getString("statu"));
+        }
+        pst.close();
+        return usuario;
+    }
 }

@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.Usuario;
 import javax.swing.JFrame;
 
 /**
@@ -16,10 +17,21 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public Principal(Usuario user) {
+        if(user.getNivelUsuario()==1){
+        
         initComponents();
+        ativa();
         this.setVisible(true);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        } else{
+            initComponents();
+            jmSair.setEnabled(true);
+            this.setVisible(true);
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        }
+        
+        
     }
 
     /**
@@ -61,6 +73,7 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jmArquivo.setText("Arquivo");
+        jmArquivo.setEnabled(false);
 
         jmiAluno.setText("Aluno");
         jmiAluno.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +110,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jmArquivo);
 
         jmEventos.setText("Eventos");
+        jmEventos.setEnabled(false);
 
         jmiAtividades.setText("Atividades");
         jmiAtividades.addActionListener(new java.awt.event.ActionListener() {
@@ -125,12 +139,15 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jmEventos);
 
         jmFrequencia.setText("Frequência");
+        jmFrequencia.setEnabled(false);
         jMenuBar1.add(jmFrequencia);
 
         jmRelatorios.setText("Relatórios");
+        jmRelatorios.setEnabled(false);
         jMenuBar1.add(jmRelatorios);
 
         jmSair.setText("Sair");
+        jmSair.setEnabled(false);
 
         jmiSair.setText("Sair");
         jmiSair.addActionListener(new java.awt.event.ActionListener() {
@@ -213,9 +230,13 @@ public class Principal extends javax.swing.JFrame {
         pnlPrincipal.updateUI();
     }//GEN-LAST:event_jmiUsuárioActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    public void ativa(){
+        jmArquivo.setEnabled(true);
+        jmEventos.setEnabled(true);
+        jmFrequencia.setEnabled(true);
+        jmRelatorios.setEnabled(true);
+        jmSair.setEnabled(true);
+    }
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

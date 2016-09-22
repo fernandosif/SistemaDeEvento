@@ -19,8 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
+
 
 /**
  *
@@ -363,11 +362,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
                 Logger.getLogger(AlunoView.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-        if(aluno!=null){
-            JOptionPane.showMessageDialog(null, "RA já Cadastrado!");
-            txtRa.setText("");
-            txtRa.requestFocusInWindow();
-        } else if(txtRa.getText().isEmpty() || txtRa.getText().length()<7){
+         if(txtRa.getText().isEmpty() || txtRa.getText().length()<7){
             JOptionPane.showMessageDialog(null, "Preencha o RA!");
             txtRa.requestFocusInWindow();
             
@@ -384,6 +379,11 @@ public class AlunoView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Preencha o E-Mail!");
             txtEmail.requestFocusInWindow();
         } else if(txtCodigo.getText().isEmpty()){
+            if(aluno!=null){
+            JOptionPane.showMessageDialog(null, "RA já Cadastrado!");
+            txtRa.setText("");
+            txtRa.requestFocusInWindow();
+        }else{
             aluno = new Aluno();
             aluno.setNomeAluno(txtNome.getText());
             aluno.setEmailAluno(txtEmail.getText());
@@ -402,7 +402,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
             preparaSalvareCancelar();
             desativaCampos();
             limpaCamposAluno();
-            
+            } 
             
         } else{
             aluno = new Aluno();

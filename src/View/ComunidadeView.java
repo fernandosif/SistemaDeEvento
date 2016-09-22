@@ -353,11 +353,7 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
             Logger.getLogger(ComunidadeView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if(comunidade!=null){
-            JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
-            txtCpf.setText("");
-            txtCpf.requestFocusInWindow();
-        }else if(txtCpf.getText().isEmpty() || txtCpf.getText().length()<11){
+        if(txtCpf.getText().isEmpty() || txtCpf.getText().length()<11){
             JOptionPane.showMessageDialog(null, "Preencha o CPF Corretamente!");
             txtCpf.requestFocusInWindow();
         } else if(txtNome.getText().isEmpty()){
@@ -375,6 +371,11 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
         }
         
         else if(txtCodigo.getText().isEmpty()){
+            if(comunidade!=null){
+            JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
+            txtCpf.setText("");
+            txtCpf.requestFocusInWindow();
+        } else{
             comunidade = new Comunidade();
             comunidade.setNomeComunidade(txtNome.getText());
             comunidade.setEmailComunidade(txtEmail.getText());
@@ -395,6 +396,7 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
             preparaSalvareCancelar();
             desativaCampos();
             limpaCamposComunidade();
+                }
         } else{
             comunidade = new Comunidade();
             comunidade.setCodigoComunidade(Integer.parseInt(txtCodigo.getText()));

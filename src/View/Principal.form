@@ -7,6 +7,7 @@
         <Menu class="javax.swing.JMenu" name="jmArquivo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Arquivo"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiAluno">
@@ -46,6 +47,7 @@
         <Menu class="javax.swing.JMenu" name="jmEventos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eventos"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiAtividades">
@@ -77,16 +79,19 @@
         <Menu class="javax.swing.JMenu" name="jmFrequencia">
           <Properties>
             <Property name="text" type="java.lang.String" value="Frequ&#xea;ncia"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmRelatorios">
           <Properties>
             <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmSair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiSair">

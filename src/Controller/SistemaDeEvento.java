@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import View.LoginView;
 import View.Principal;
 
 /**
@@ -21,7 +22,8 @@ public class SistemaDeEvento {
     }
     
     public void executar(){
-        Principal principal = new Principal();
+        //Principal principal = new Principal();
+        LoginView login = new LoginView();
     }
     
 }
