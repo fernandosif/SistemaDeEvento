@@ -481,6 +481,7 @@ public class AtividadeView extends javax.swing.JInternalFrame {
         limpaCamposAtividade();
         preparaNovo();
         ativaCampos();
+        txtDescricao.requestFocusInWindow();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed

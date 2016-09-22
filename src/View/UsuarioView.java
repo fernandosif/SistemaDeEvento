@@ -290,6 +290,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
     
     
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        txtUsuario.requestFocusInWindow();
         limpaCamposUsuario();
         preparaNovo();
         ativaCampos();

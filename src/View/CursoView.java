@@ -309,6 +309,7 @@ public class CursoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        txtCurso.requestFocusInWindow();
         limpaCamposCurso();
         preparaNovo();
         ativaCampos();

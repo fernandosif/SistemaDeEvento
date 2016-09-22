@@ -285,6 +285,7 @@ public class CategoriaView extends javax.swing.JInternalFrame {
         limpaCamposCategoria();
         preparaNovo();
         ativaCampos();
+        txtCategoria.requestFocusInWindow();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed

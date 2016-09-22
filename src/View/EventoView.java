@@ -507,6 +507,7 @@ public class EventoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        txtEvento.requestFocusInWindow();
         limpaCamposEvento();
         preparaNovo();
         ativaCampos();

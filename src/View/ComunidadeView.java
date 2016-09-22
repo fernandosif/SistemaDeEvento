@@ -39,6 +39,8 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
         txtTelefone.setDocument(new LimiteDigitos(15));
         txtEmail.setDocument(new LimiteDigitos(60));
         txtInstituicao.setDocument(new LimiteDigitos(60));
+        txtTelefone.setDocument(new LimiteDigitos(12));
+        txtCpf.setDocument(new LimiteDigitos(11));
         this.setVisible(true);
         atualizarTabelaComunidade();
     }
@@ -63,8 +65,8 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
         txtEmail = new javax.swing.JTextField();
         txtInstituicao = new javax.swing.JTextField();
         lbInstituicao = new javax.swing.JLabel();
-        txtCpf = new javax.swing.JFormattedTextField();
-        txtTelefone = new javax.swing.JFormattedTextField();
+        txtTelefone = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JTextField();
         pnl2 = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
@@ -110,11 +112,9 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
         lbInstituicao.setText("Instituição:");
         lbInstituicao.setEnabled(false);
 
-        txtCpf.setFormatterFactory(setFormatoCpf());
-        txtCpf.setEnabled(false);
-
-        txtTelefone.setFormatterFactory(setFormatoTelefone());
         txtTelefone.setEnabled(false);
+
+        txtCpf.setEnabled(false);
 
         javax.swing.GroupLayout pnl1Layout = new javax.swing.GroupLayout(pnl1);
         pnl1.setLayout(pnl1Layout);
@@ -130,20 +130,24 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
                     .addComponent(lbInstituicao, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtInstituicao)
-                    .addComponent(txtNome)
                     .addGroup(pnl1Layout.createSequentialGroup()
                         .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtInstituicao)
+                            .addComponent(txtNome)
                             .addGroup(pnl1Layout.createSequentialGroup()
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(lbCpf)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(43, 43, 43))
+                                .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnl1Layout.createSequentialGroup()
+                                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(lbCpf)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 87, Short.MAX_VALUE)))
+                        .addGap(43, 43, 43))
+                    .addGroup(pnl1Layout.createSequentialGroup()
+                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pnl1Layout.setVerticalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,33 +292,7 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-
-    
-     public static DefaultFormatterFactory setFormatoCpf(){  
-        MaskFormatter comFoco = null;  
-        try   
-        {   
-            comFoco = new MaskFormatter("###.###.###-##"); 
-            comFoco.setPlaceholderCharacter('_');
-        }   
-        catch (Exception pe) { }  
-        DefaultFormatterFactory factory = new DefaultFormatterFactory(comFoco, comFoco);  
-        return factory;  
-    } 
-     
-    public static DefaultFormatterFactory setFormatoTelefone(){  
-        MaskFormatter comFoco = null;  
-        try   
-        {   
-            comFoco = new MaskFormatter("(##)####-####"); 
-            comFoco.setPlaceholderCharacter('_');
-        }   
-        catch (Exception pe) { }  
-        DefaultFormatterFactory factory = new DefaultFormatterFactory(comFoco, comFoco);  
-        return factory;  
-    } 
-    
+   
     public void atualizarTabelaComunidade(){
         comunidade = new Comunidade();
         
@@ -331,7 +309,7 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
         for(Comunidade comunidade : listaComunidade){
             dados[i][0] = String.valueOf(comunidade.getCodigoComunidade());
             dados[i][1] = comunidade.getNomeComunidade();
-            dados[i][2] = comunidade.getCpfComunidade();
+            dados[i][2] = String.valueOf(comunidade.getCpfComunidade());
             dados[i][3] = comunidade.getInstituicaoComunidade();
             dados[i][4] = comunidade.getTelefoneComunidade();
             i++;
@@ -368,9 +346,7 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
     
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         comunidade = new Comunidade();
-        String strCpf="___.___.___-__";
-        String strFone="(__)____-____";
-        
+       
         try {
             comunidade = comunidadeDAO.recuperar(txtCpf.getText());
         } catch (SQLException ex) {
@@ -381,14 +357,14 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
             txtCpf.setText("");
             txtCpf.requestFocusInWindow();
-        }else if(txtCpf.getText().isEmpty() || strCpf.equals(txtCpf.getText())){
-            JOptionPane.showMessageDialog(null, "Preencha o CPF!");
-            txtNome.requestFocusInWindow();
+        }else if(txtCpf.getText().isEmpty() || txtCpf.getText().length()<11){
+            JOptionPane.showMessageDialog(null, "Preencha o CPF Corretamente!");
+            txtCpf.requestFocusInWindow();
         } else if(txtNome.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Preencha o Nome!");
             txtNome.requestFocusInWindow();
-        } else if(txtTelefone.getText().isEmpty() || strFone.equals(txtTelefone.getText())){
-            JOptionPane.showMessageDialog(null, "Preencha o Telefone!");
+        } else if(txtTelefone.getText().isEmpty() || txtTelefone.getText().length()<11){
+            JOptionPane.showMessageDialog(null, "Preencha o Telefone Corretamente(DDD+Número)!");
             txtTelefone.requestFocusInWindow();
         } else if(txtEmail.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Preencha o E-Mail!");
@@ -497,6 +473,7 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         btnAlterar.setEnabled(false);
         btnExcluir.setEnabled(false);
+        txtCpf.requestFocusInWindow();
         limpaCamposComunidade();
         preparaNovo();
         ativaCampos();
@@ -604,10 +581,10 @@ public class ComunidadeView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnl2;
     private javax.swing.JTable tbComunidade;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JFormattedTextField txtCpf;
+    private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtInstituicao;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JFormattedTextField txtTelefone;
+    private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

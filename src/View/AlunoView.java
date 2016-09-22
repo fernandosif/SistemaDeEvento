@@ -42,7 +42,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
         txtEmail.setDocument(new LimiteDigitos(60));
         txtCurso.setDocument(new LimiteDigitos(50));
         txtTurma.setDocument(new LimiteDigitos(20));
-        
+        txtRa.setDocument(new LimiteDigitos(7));
         
     }
 
@@ -67,7 +67,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
         txtTurma = new javax.swing.JTextField();
         lbEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        txtRa = new javax.swing.JFormattedTextField();
+        txtRa = new javax.swing.JTextField();
         pnl2 = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
@@ -119,7 +119,6 @@ public class AlunoView extends javax.swing.JInternalFrame {
 
         txtEmail.setEnabled(false);
 
-        txtRa.setFormatterFactory(setFormatoRa());
         txtRa.setEnabled(false);
 
         javax.swing.GroupLayout pnl1Layout = new javax.swing.GroupLayout(pnl1);
@@ -144,7 +143,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(lbRa)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtRa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtRa, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnl1Layout.createSequentialGroup()
                                 .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -179,6 +178,9 @@ public class AlunoView extends javax.swing.JInternalFrame {
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(87, Short.MAX_VALUE))
         );
+
+        txtRa.getAccessibleContext().setAccessibleName("");
+        txtRa.getAccessibleContext().setAccessibleDescription("");
 
         btnNovo.setText("Novo");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -298,18 +300,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-   public static DefaultFormatterFactory setFormatoRa(){  
-        MaskFormatter comFoco = null;  
-        try   
-        {   
-            comFoco = new MaskFormatter("##-#####"); 
-            comFoco.setPlaceholderCharacter('_');
-        }   
-        catch (Exception pe) { }  
-        DefaultFormatterFactory factory = new DefaultFormatterFactory(comFoco, comFoco);  
-        return factory;  
-    } 
+ 
     
      public void atualizarTabelaAluno(){
         aluno = new Aluno();
@@ -365,7 +356,6 @@ public class AlunoView extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         aluno = new Aluno();
-        String strRa = "__-_____";
         
         try {
                 aluno = alunoDAO.recuperar(txtRa.getText());
@@ -377,7 +367,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "RA já Cadastrado!");
             txtRa.setText("");
             txtRa.requestFocusInWindow();
-        } else if(txtRa.getText().isEmpty() || strRa.equals(txtRa.getText())){
+        } else if(txtRa.getText().isEmpty() || txtRa.getText().length()<7){
             JOptionPane.showMessageDialog(null, "Preencha o RA!");
             txtRa.requestFocusInWindow();
             
@@ -435,7 +425,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
             atualizarTabelaAluno();
             preparaSalvareCancelar();
             desativaCampos();
-            
+            limpaCamposAluno();
             
         } 
        
@@ -489,6 +479,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        txtRa.requestFocusInWindow();
         btnAlterar.setEnabled(false);
         btnExcluir.setEnabled(false);
         limpaCamposAluno();
@@ -598,7 +589,7 @@ public class AlunoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCurso;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JFormattedTextField txtRa;
+    private javax.swing.JTextField txtRa;
     private javax.swing.JTextField txtTurma;
     // End of variables declaration//GEN-END:variables
 }
