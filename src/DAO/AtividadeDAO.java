@@ -89,18 +89,18 @@ public class AtividadeDAO {
     public void alterar(Atividade atividade) throws SQLException{
         sql = "update atividade set titulo=?, dataa=?, inicio=?, termino=?, ministrante=?, locall=?, vagasTotal=?, vagasDisp=?, descricao=?, codEvento=?, codCategoria=? where id=?";
         pst = Conexao.getInstance().prepareStatement(sql);
-       pst.setInt(1, 0);
-        pst.setString(2, atividade.getDescricaoAtividade());
-        pst.setString(3, atividade.getDataAtividade());
-        pst.setString(4, atividade.getHoraiAtividade());
-        pst.setString(5, atividade.getHorafAtividade());
-        pst.setString(6, atividade.getMinistranteAtividade());
-        pst.setString(7, atividade.getLocalAtividade());
-        pst.setInt(8, atividade.getVagastAtividade());
-        pst.setInt(9, atividade.getVagasdAtividade());
-        pst.setString(10, atividade.getResumoAtividade());
-        pst.setInt(11, atividade.getCategoriaAtividade().getCodigoCategoria());
-        pst.setInt(12, atividade.getEventoAtividade().getCodigoEvento());
+        pst.setString(1, atividade.getDescricaoAtividade());
+        pst.setString(2, atividade.getDataAtividade());
+        pst.setString(3, atividade.getHoraiAtividade());
+        pst.setString(4, atividade.getHorafAtividade());
+        pst.setString(5, atividade.getMinistranteAtividade());
+        pst.setString(6, atividade.getLocalAtividade());
+        pst.setInt(7, atividade.getVagastAtividade());
+        pst.setInt(8, atividade.getVagasdAtividade());
+        pst.setString(9, atividade.getResumoAtividade());
+        pst.setInt(10, atividade.getCategoriaAtividade().getCodigoCategoria());
+        pst.setInt(11, atividade.getEventoAtividade().getCodigoEvento());
+        pst.setInt(12, atividade.getCodigoAtividade());
         pst.execute();
         pst.close();
     }

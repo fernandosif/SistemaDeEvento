@@ -63,7 +63,7 @@ public class EventoDAO {
     }
     
     public void alterar(Evento evento) throws SQLException{
-        sql = "update evento set titulo=?, inicio=?, termino=?, responsavel=?, area=?, statuss=? where id=?";
+        sql = "update evento set titulo=?, inicio=?, termino=?, responsavel=?, codCurso=?, statuss=? where id=?";
         pst = Conexao.getInstance().prepareStatement(sql);
         pst.setString(1, evento.getTituloEvento());
         pst.setString(2, evento.getInicioEvento());
@@ -72,7 +72,6 @@ public class EventoDAO {
         pst.setInt(5, evento.getCursoEvento().getCodigoCurso());
         pst.setString(6, evento.getStatusEvento());
         pst.setInt(7, evento.getCodigoEvento());
-        
         pst.execute();
         pst.close();
     }

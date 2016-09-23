@@ -552,6 +552,7 @@ public class AtividadeView extends javax.swing.JInternalFrame {
             limpaCamposAtividade();
         } else{
             atividade = new Atividade();
+            atividade.setCodigoAtividade(Integer.parseInt(txtId.getText()));
             atividade.setDescricaoAtividade(txtDescricao.getText());
             atividade.setVagastAtividade(Integer.parseInt(txtVagasd.getText()));
             atividade.setVagasdAtividade(Integer.parseInt(txtVagast.getText()));

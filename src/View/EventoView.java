@@ -453,8 +453,8 @@ public class EventoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void tbEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEventoMouseClicked
-        Curso curso1 = new Curso();
-       
+        Curso curso = new Curso();
+        preparaSelecaoTabela();
         
         txtCodigo.setText(tbEvento.getValueAt(tbEvento.getSelectedRow(),0).toString());
         
@@ -465,7 +465,7 @@ public class EventoView extends javax.swing.JInternalFrame {
         }
         
         try {
-            curso1 = cursoDAO.recuperarArea(evento.getCodCurso());
+            curso = cursoDAO.recuperarArea(evento.getCodCurso());
         } catch (SQLException ex) {
             Logger.getLogger(EventoView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -477,9 +477,6 @@ public class EventoView extends javax.swing.JInternalFrame {
         cbCurso.setSelectedItem(curso.getNomeCurso());
         cbStatus.setSelectedItem(evento.getStatusEvento());
 
-        preparaSelecaoTabela();
-        btnAlterar.setEnabled(true);
-        btnExcluir.setEnabled(true);
     }//GEN-LAST:event_tbEventoMouseClicked
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
