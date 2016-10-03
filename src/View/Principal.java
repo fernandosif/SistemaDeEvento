@@ -54,7 +54,9 @@ public class Principal extends javax.swing.JFrame {
         jmiAtividades = new javax.swing.JMenuItem();
         jmiCategoria = new javax.swing.JMenuItem();
         jmiEventos = new javax.swing.JMenuItem();
+        jmInscricao = new javax.swing.JMenu();
         jmFrequencia = new javax.swing.JMenu();
+        jmiFrequencia = new javax.swing.JMenuItem();
         jmRelatorios = new javax.swing.JMenu();
         jmSair = new javax.swing.JMenu();
         jmiSair = new javax.swing.JMenuItem();
@@ -138,8 +140,21 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jmEventos);
 
+        jmInscricao.setText("Inscrição");
+        jmInscricao.setEnabled(false);
+        jMenuBar1.add(jmInscricao);
+
         jmFrequencia.setText("Frequência");
         jmFrequencia.setEnabled(false);
+
+        jmiFrequencia.setText("Frequências");
+        jmiFrequencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiFrequenciaActionPerformed(evt);
+            }
+        });
+        jmFrequencia.add(jmiFrequencia);
+
         jMenuBar1.add(jmFrequencia);
 
         jmRelatorios.setText("Relatórios");
@@ -230,6 +245,13 @@ public class Principal extends javax.swing.JFrame {
         pnlPrincipal.updateUI();
     }//GEN-LAST:event_jmiUsuárioActionPerformed
 
+    private void jmiFrequenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFrequenciaActionPerformed
+        FrequenciaView frequencia = new FrequenciaView();
+        pnlPrincipal.removeAll();
+        pnlPrincipal.add(frequencia);
+        pnlPrincipal.updateUI();
+    }//GEN-LAST:event_jmiFrequenciaActionPerformed
+
     public void ativa(){
         jmArquivo.setEnabled(true);
         jmEventos.setEnabled(true);
@@ -244,6 +266,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jmArquivo;
     private javax.swing.JMenu jmEventos;
     private javax.swing.JMenu jmFrequencia;
+    private javax.swing.JMenu jmInscricao;
     private javax.swing.JMenu jmRelatorios;
     private javax.swing.JMenu jmSair;
     private javax.swing.JMenuItem jmiAluno;
@@ -252,6 +275,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiComunidade;
     private javax.swing.JMenuItem jmiCursos;
     private javax.swing.JMenuItem jmiEventos;
+    private javax.swing.JMenuItem jmiFrequencia;
     private javax.swing.JMenuItem jmiSair;
     private javax.swing.JMenuItem jmiUsuário;
     private javax.swing.JPanel pnlPrincipal;
