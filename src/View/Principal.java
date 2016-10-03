@@ -55,6 +55,7 @@ public class Principal extends javax.swing.JFrame {
         jmiCategoria = new javax.swing.JMenuItem();
         jmiEventos = new javax.swing.JMenuItem();
         jmInscricao = new javax.swing.JMenu();
+        jmiInscricao = new javax.swing.JMenuItem();
         jmFrequencia = new javax.swing.JMenu();
         jmiFrequencia = new javax.swing.JMenuItem();
         jmRelatorios = new javax.swing.JMenu();
@@ -142,6 +143,15 @@ public class Principal extends javax.swing.JFrame {
 
         jmInscricao.setText("Inscrição");
         jmInscricao.setEnabled(false);
+
+        jmiInscricao.setText("Inscrições");
+        jmiInscricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiInscricaoActionPerformed(evt);
+            }
+        });
+        jmInscricao.add(jmiInscricao);
+
         jMenuBar1.add(jmInscricao);
 
         jmFrequencia.setText("Frequência");
@@ -252,9 +262,17 @@ public class Principal extends javax.swing.JFrame {
         pnlPrincipal.updateUI();
     }//GEN-LAST:event_jmiFrequenciaActionPerformed
 
+    private void jmiInscricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInscricaoActionPerformed
+        InscricaoView inscricao = new InscricaoView();
+        pnlPrincipal.removeAll();
+        pnlPrincipal.add(inscricao);
+        pnlPrincipal.updateUI();
+    }//GEN-LAST:event_jmiInscricaoActionPerformed
+
     public void ativa(){
         jmArquivo.setEnabled(true);
         jmEventos.setEnabled(true);
+        jmInscricao.setEnabled(true);
         jmFrequencia.setEnabled(true);
         jmRelatorios.setEnabled(true);
         jmSair.setEnabled(true);
@@ -276,6 +294,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiCursos;
     private javax.swing.JMenuItem jmiEventos;
     private javax.swing.JMenuItem jmiFrequencia;
+    private javax.swing.JMenuItem jmiInscricao;
     private javax.swing.JMenuItem jmiSair;
     private javax.swing.JMenuItem jmiUsuário;
     private javax.swing.JPanel pnlPrincipal;
