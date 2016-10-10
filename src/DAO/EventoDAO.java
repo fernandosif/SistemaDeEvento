@@ -106,4 +106,13 @@ public class EventoDAO {
         pst.close();
         return evento;
     }
+    
+     public int recuperarId (String titulo)throws SQLException{
+         int id=0;
+    
+        return id;
+    }
 }
+
+
+   

@@ -38,6 +38,24 @@ public class AtividadeDAO {
         return listaAtividade;
     }
     
+    public List<Atividade> ListaAtividadeEvento(int id) throws SQLException{
+        List<Atividade> listaAtividadeEvento;
+        listaAtividadeEvento = new ArrayList<>();
+        sql = "select *from atividade where codEvento=? order by titulo";
+        pst = Conexao.getInstance().prepareStatement(sql);
+        pst.setInt(1, id);
+        
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            
+            listaAtividadeEvento.add(new Atividade(rs.getInt("id"), rs.getString("titulo"), rs.getInt("vagasTotal"),
+                    rs.getInt("vagasDisp"), rs.getString("ministrante"), rs.getString("dataa"), rs.getString("inicio"),
+                    rs.getString("termino"), rs.getString("locall"), rs.getString("descricao"),
+                    rs.getInt("codEvento"), rs.getInt("codCategoria")));
+        }
+        pst.close();
+        return listaAtividadeEvento;
+    }
     
     //Ver onde está sendo usado...
     public Atividade selectId(int codigoAtividadeId) throws SQLException{
@@ -72,8 +90,8 @@ public class AtividadeDAO {
         pst.setInt(8, atividade.getVagastAtividade());
         pst.setInt(9, atividade.getVagasdAtividade());
         pst.setString(10, atividade.getResumoAtividade());
-        pst.setInt(11, atividade.getCategoriaAtividade().getCodigoCategoria());
-        pst.setInt(12, atividade.getEventoAtividade().getCodigoEvento());
+        pst.setInt(11, atividade.getEventoAtividade().getCodigoEvento());
+        pst.setInt(12, atividade.getCategoriaAtividade().getCodigoCategoria());
         pst.execute();
         pst.close();    
     }

@@ -16,7 +16,8 @@ public class InscricaoView extends javax.swing.JInternalFrame {
      */
     public InscricaoView() {
         initComponents();
-        this.setVisible(true);
+        
+        this.setVisible(false);
     }
 
     /**
