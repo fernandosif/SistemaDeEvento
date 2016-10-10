@@ -107,10 +107,19 @@ public class EventoDAO {
         return evento;
     }
     
-     public int recuperarId (String titulo)throws SQLException{
-         int id=0;
-    
-        return id;
+     public Evento recuperarId (String titulo)throws SQLException{
+        Evento evento=null;
+        sql = "select *from evento where titulo=?";
+        pst = Conexao.getInstance().prepareStatement(sql);
+        pst.setString(1, titulo);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            evento = new Evento(rs.getInt("id"), rs.getString("titulo"), rs.getString("inicio"), rs.getString("termino"),
+                    rs.getString("responsavel"), rs.getInt("codCurso"), rs.getString("statuss"));
+        }
+        pst.execute();
+        pst.close();
+        return evento;
     }
 }
 

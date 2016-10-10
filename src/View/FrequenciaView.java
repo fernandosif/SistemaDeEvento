@@ -24,10 +24,12 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
     
     Frequencia frequencia;
     Evento evento;
+    Atividade atividade;
     EventoDAO eventoDAO;
     List<Evento> listaEvento;
     AtividadeDAO atividadeDAO;
     List<Atividade> listaAtividade;
+    List<Atividade> listaAtividadeEvento;
     
     public FrequenciaView() {
         initComponents();
@@ -37,6 +39,7 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
         atividadeDAO = new AtividadeDAO();
         listaEvento = new ArrayList<>();
         listaAtividade = new ArrayList<>();
+        listaAtividadeEvento = new ArrayList<>();
         preencherComboEvento();
         
         //preencherComboAtividade();
@@ -61,6 +64,8 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         labelCod = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        labelCod2 = new javax.swing.JLabel();
         lb1 = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
@@ -103,9 +108,13 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
 
         btnCancelar.setText("Cancelar");
 
-        jLabel2.setText("Codigo");
+        jLabel2.setText("Codigo evento");
 
         labelCod.setText("jLabel3");
+
+        jLabel3.setText("Código atividade");
+
+        labelCod2.setText("jLabel4");
 
         javax.swing.GroupLayout dialogFrequenciaLayout = new javax.swing.GroupLayout(dialogFrequencia.getContentPane());
         dialogFrequencia.getContentPane().setLayout(dialogFrequenciaLayout);
@@ -126,9 +135,13 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
                             .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(dialogFrequenciaLayout.createSequentialGroup()
                         .addGap(81, 81, 81)
-                        .addComponent(jLabel2)
-                        .addGap(66, 66, 66)
-                        .addComponent(labelCod)))
+                        .addGroup(dialogFrequenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(56, 56, 56)
+                        .addGroup(dialogFrequenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCod2)
+                            .addComponent(labelCod))))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
         dialogFrequenciaLayout.setVerticalGroup(
@@ -142,11 +155,15 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
                 .addGroup(dialogFrequenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(dialogFrequenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(labelCod))
-                .addGap(31, 31, 31))
+                .addGap(21, 21, 21)
+                .addGroup(dialogFrequenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(labelCod2))
+                .addContainerGap())
         );
 
         setClosable(true);
@@ -246,8 +263,8 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbEventoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEventoItemStateChanged
-        //preencherComboAtividade();
-        atualizarLabel();
+       preencherComboAtividade();
+       atualizarLabel();
     }//GEN-LAST:event_cbEventoItemStateChanged
 
     
@@ -270,15 +287,28 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
     }
 
     public void atualizarLabel(){
-        //evento =listaEvento.get(cbEvento.getSelectedIndex());
-        //String str = Integer.toString(evento.getCodigoEvento());
-        String str = (String) cbEvento.getSelectedItem();
+        
+        try {
+            evento=eventoDAO.recuperarId((String) cbEvento.getSelectedItem());
+        } catch (SQLException ex) {
+            Logger.getLogger(FrequenciaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String str = Integer.toString(evento.getCodigoEvento());
+        frequencia.setAtividadeFrequencia(listaAtividadeEvento.get(cbAtividade.getSelectedIndex()));
+        String str2 = Integer.toString(frequencia.getAtividadeFrequencia().getCodigoAtividade());
+        
         labelCod.setText(str);
+        labelCod2.setText(str2);
     }
     
     public void preencherComboAtividade(){
         Frequencia frequenciaa = new Frequencia();
-        frequenciaa.setEventoFrequencia(listaEvento.get(cbEvento.getSelectedIndex()));
+        try {
+            frequenciaa.setEventoFrequencia(evento=eventoDAO.recuperarId((String) cbEvento.getSelectedItem()));
+        } catch (SQLException ex) {
+            Logger.getLogger(FrequenciaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         
@@ -286,12 +316,12 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
         //labelCod.setText(str);
         
         try {
-            listaAtividade = atividadeDAO.ListaAtividadeEvento(frequenciaa.getEventoFrequencia().getCodigoEvento());
+            listaAtividadeEvento = atividadeDAO.ListaAtividadeEvento(frequenciaa.getEventoFrequencia().getCodigoEvento());
         } catch (SQLException ex) {
             Logger.getLogger(FrequenciaView.class.getName()).log(Level.SEVERE, null, ex);
         }
   
-        for (Atividade atividade : listaAtividade){
+        for (Atividade atividade : listaAtividadeEvento){
             cbAtividade.addItem(atividade.getDescricaoAtividade());
         }
     }
@@ -307,11 +337,13 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
     private javax.swing.JDialog dialogFrequencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel labelCod;
+    private javax.swing.JLabel labelCod2;
     private javax.swing.JLabel lb1;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lb3;
