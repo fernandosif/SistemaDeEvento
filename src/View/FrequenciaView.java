@@ -103,6 +103,11 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
         });
 
         cbAtividade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleciona a Atividade..." }));
+        cbAtividade.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbAtividadeItemStateChanged(evt);
+            }
+        });
 
         btnConfirmar.setText("Confirmar");
 
@@ -267,6 +272,10 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
        atualizarLabel();
     }//GEN-LAST:event_cbEventoItemStateChanged
 
+    private void cbAtividadeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAtividadeItemStateChanged
+        atualizarLabel();
+    }//GEN-LAST:event_cbAtividadeItemStateChanged
+
     
             
     public void preencherComboEvento(){
@@ -295,36 +304,37 @@ public class FrequenciaView extends javax.swing.JInternalFrame {
         }
         
         String str = Integer.toString(evento.getCodigoEvento());
-        frequencia.setAtividadeFrequencia(listaAtividadeEvento.get(cbAtividade.getSelectedIndex()));
-        String str2 = Integer.toString(frequencia.getAtividadeFrequencia().getCodigoAtividade());
+        /*frequencia.setAtividadeFrequencia(listaAtividadeEvento.get(cbAtividade.getSelectedIndex()));*/
+        String str2 = Integer.toString(cbAtividade.getSelectedIndex());
         
         labelCod.setText(str);
         labelCod2.setText(str2);
     }
     
     public void preencherComboAtividade(){
-        Frequencia frequenciaa = new Frequencia();
+        Frequencia frequencia = new Frequencia();
         try {
-            frequenciaa.setEventoFrequencia(evento=eventoDAO.recuperarId((String) cbEvento.getSelectedItem()));
+            frequencia.setEventoFrequencia(evento=eventoDAO.recuperarId((String) cbEvento.getSelectedItem()));
+        } catch (SQLException ex) {
+            Logger.getLogger(FrequenciaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            listaAtividadeEvento = atividadeDAO.ListaAtividadeEvento(frequencia.getEventoFrequencia().getCodigoEvento());
         } catch (SQLException ex) {
             Logger.getLogger(FrequenciaView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
-        
-        String str = Integer.toString(frequenciaa.getEventoFrequencia().getCodigoEvento());
-        //labelCod.setText(str);
-        
-        try {
-            listaAtividadeEvento = atividadeDAO.ListaAtividadeEvento(frequenciaa.getEventoFrequencia().getCodigoEvento());
-        } catch (SQLException ex) {
-            Logger.getLogger(FrequenciaView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-  
+         
         for (Atividade atividade : listaAtividadeEvento){
             cbAtividade.addItem(atividade.getDescricaoAtividade());
+            
         }
+        
+        
     }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

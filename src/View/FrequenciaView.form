@@ -112,6 +112,9 @@
               <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Seleciona a Atividade...&quot; })" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbAtividadeItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnConfirmar">
           <Properties>
